@@ -144,18 +144,7 @@ extension PostsViewController: UITableViewDataSource {
         postCell.likesCountLabel.text = "❤️ \(post.likesCount)"
         postCell.datePostedLabel.text = post.datePosted.timeAgo()
         
-        if postCell.previewTextLabel.isTruncated {
-            postCell.addExpandCollapseButton()
-        }
-        
         return postCell
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        heightForRowAt indexPath: IndexPath
-    ) -> CGFloat {
-        return UITableView.automaticDimension
     }
     
 }
@@ -166,13 +155,33 @@ extension PostsViewController: UITableViewDelegate {
     
     func tableView(
         _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        let postCell = (cell as! PostCell)
+        
+        if postCell.previewTextLabel.isTruncated {
+            postCell.addExpandCollapseButton()
+        }
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         let postDetailViewController = PostDetailViewController()
         postDetailViewController.postID = posts[indexPath.row].id
-
+        
         navigationController?
             .pushViewController(postDetailViewController, animated: true)
     }
