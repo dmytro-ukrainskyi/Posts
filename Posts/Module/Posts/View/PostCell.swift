@@ -12,7 +12,7 @@ final class PostCell: UITableViewCell {
     static let identifier = "PostCell"
     
     // MARK: Public Properties
-    
+
     var titleLabel: UILabel = {
         let label = UILabel()
         
@@ -37,16 +37,18 @@ final class PostCell: UITableViewCell {
     var expandCollapseButton: UIButton = {
         let button = UIButton()
         
-        // TODO: Setup expand/collapse button
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 8
+        button.setTitle("Expand", for: .normal)
         
         return button
     }()
-    
+            
     // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         setupUI()
     }
     
@@ -55,7 +57,7 @@ final class PostCell: UITableViewCell {
     }
     
     // MARK: Public Methods
-    
+
     func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(previewTextLabel)
@@ -82,12 +84,17 @@ final class PostCell: UITableViewCell {
         
         expandCollapseButton.setTitle("Expand", for: .normal)
     }
-    
+
     // MARK: - Private Methods
     
     private func layoutTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        titleLabel
+            .setContentCompressionResistancePriority(UILayoutPriority(999), for: .vertical)
+        titleLabel
+            .setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
+                
         NSLayoutConstraint.activate([
             titleLabel
                 .topAnchor
@@ -104,6 +111,11 @@ final class PostCell: UITableViewCell {
     private func layoutPreviewTextLabel() {
         previewTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        previewTextLabel
+            .setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
+        previewTextLabel
+            .setContentHuggingPriority(UILayoutPriority(0), for: .vertical)
+
         NSLayoutConstraint.activate([
             previewTextLabel
                 .topAnchor
