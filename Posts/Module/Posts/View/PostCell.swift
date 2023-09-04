@@ -12,7 +12,7 @@ final class PostCell: UITableViewCell {
     static let identifier = "PostCell"
     
     // MARK: Public Properties
-
+    
     var titleLabel: UILabel = {
         let label = UILabel()
         
@@ -38,15 +38,15 @@ final class PostCell: UITableViewCell {
         let button = UIButton()
         
         // TODO: Setup expand/collapse button
-
+        
         return button
     }()
-            
+    
     // MARK: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         setupUI()
     }
     
@@ -61,7 +61,7 @@ final class PostCell: UITableViewCell {
         contentView.addSubview(previewTextLabel)
         contentView.addSubview(likesCountLabel)
         contentView.addSubview(datePostedLabel)
-                
+        
         layoutTitleLabel()
         layoutPreviewTextLabel()
         layoutLikesCountLabel()
@@ -80,14 +80,14 @@ final class PostCell: UITableViewCell {
     func collapse() {
         previewTextLabel.numberOfLines = 2
         
-        expandCollapseButton.setTitle("Collapse", for: .normal)
+        expandCollapseButton.setTitle("Expand", for: .normal)
     }
-
+    
     // MARK: - Private Methods
     
     private func layoutTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             titleLabel
                 .topAnchor
@@ -103,7 +103,7 @@ final class PostCell: UITableViewCell {
     
     private func layoutPreviewTextLabel() {
         previewTextLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             previewTextLabel
                 .topAnchor
@@ -140,7 +140,7 @@ final class PostCell: UITableViewCell {
     }
     
     private func layoutDatePostedLabel() {
-        datePostedLabel.translatesAutoresizingMaskIntoConstraints = COREVIDEO_FALSE
+        datePostedLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             datePostedLabel
