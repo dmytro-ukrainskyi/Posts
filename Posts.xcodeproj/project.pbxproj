@@ -9,21 +9,49 @@
 /* Begin PBXBuildFile section */
 		1342E5B02AA0EF5500AB342F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1342E5AF2AA0EF5500AB342F /* AppDelegate.swift */; };
 		1342E5B22AA0EF5500AB342F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1342E5B12AA0EF5500AB342F /* SceneDelegate.swift */; };
-		1342E5B42AA0EF5500AB342F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1342E5B32AA0EF5500AB342F /* ViewController.swift */; };
-		1342E5B72AA0EF5500AB342F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1342E5B52AA0EF5500AB342F /* Main.storyboard */; };
+		1342E5B42AA0EF5500AB342F /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1342E5B32AA0EF5500AB342F /* PostsViewController.swift */; };
 		1342E5B92AA0EF5600AB342F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1342E5B82AA0EF5600AB342F /* Assets.xcassets */; };
 		1342E5BC2AA0EF5600AB342F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1342E5BA2AA0EF5600AB342F /* LaunchScreen.storyboard */; };
+		136084EA2AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136084E92AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift */; };
+		13677D562AA0FD390020E159 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D552AA0FD380020E159 /* Post.swift */; };
+		13677D582AA0FDA20020E159 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D572AA0FDA20020E159 /* PostDetail.swift */; };
+		13677D5B2AA10D160020E159 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D5A2AA10D160020E159 /* PostDetailViewController.swift */; };
+		13677D5E2AA110DC0020E159 /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D5D2AA110DC0020E159 /* PostManager.swift */; };
+		13677D672AA129880020E159 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D662AA129880020E159 /* PostDetailView.swift */; };
+		13677D692AA129A70020E159 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D682AA129A70020E159 /* PostCell.swift */; };
+		13677D6F2AA146630020E159 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D6E2AA146630020E159 /* Constants.swift */; };
+		13677D7A2AA1EA700020E159 /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D792AA1EA700020E159 /* Date + Extensions.swift */; };
+		13677D7E2AA22C420020E159 /* SortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D7D2AA22C420020E159 /* SortOrder.swift */; };
+		13CCAAB72AA35F6D00AFE566 /* PostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAAB62AA35F6D00AFE566 /* PostsResponse.swift */; };
+		13CCAABB2AA3814100AFE566 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */; };
+		13CCAABD2AA38E1900AFE566 /* PostDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */; };
+		13CCAABF2AA3C98E00AFE566 /* DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABE2AA3C98E00AFE566 /* DateFormatter + Extensions.swift */; };
+		13CCAB392AA50F0000AFE566 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1342E5AC2AA0EF5500AB342F /* Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Posts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1342E5AF2AA0EF5500AB342F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1342E5B12AA0EF5500AB342F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1342E5B32AA0EF5500AB342F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1342E5B62AA0EF5500AB342F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1342E5B32AA0EF5500AB342F /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		1342E5B82AA0EF5600AB342F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1342E5BB2AA0EF5600AB342F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1342E5BD2AA0EF5600AB342F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		136084E92AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RelativeDateTimeFormatter + Extensions.swift"; sourceTree = "<group>"; };
+		13677D552AA0FD380020E159 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		13677D572AA0FDA20020E159 /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
+		13677D5A2AA10D160020E159 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		13677D5D2AA110DC0020E159 /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		13677D662AA129880020E159 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		13677D682AA129A70020E159 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		13677D6E2AA146630020E159 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		13677D792AA1EA700020E159 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
+		13677D7D2AA22C420020E159 /* SortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrder.swift; sourceTree = "<group>"; };
+		13CCAAB62AA35F6D00AFE566 /* PostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponse.swift; sourceTree = "<group>"; };
+		13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
+		13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailResponse.swift; sourceTree = "<group>"; };
+		13CCAABE2AA3C98E00AFE566 /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
+		13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +84,141 @@
 		1342E5AE2AA0EF5500AB342F /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				1342E5AF2AA0EF5500AB342F /* AppDelegate.swift */,
-				1342E5B12AA0EF5500AB342F /* SceneDelegate.swift */,
-				1342E5B32AA0EF5500AB342F /* ViewController.swift */,
-				1342E5B52AA0EF5500AB342F /* Main.storyboard */,
-				1342E5B82AA0EF5600AB342F /* Assets.xcassets */,
-				1342E5BA2AA0EF5600AB342F /* LaunchScreen.storyboard */,
-				1342E5BD2AA0EF5600AB342F /* Info.plist */,
+				13677D6D2AA1463B0020E159 /* Constant */,
+				13677D6A2AA131F40020E159 /* Extention */,
+				13677D702AA1DB680020E159 /* Module */,
+				13677D612AA1129E0020E159 /* Resource */,
+				13677D652AA11AE90020E159 /* Root */,
+				13677D5C2AA110B70020E159 /* Service */,
 			);
 			path = Posts;
+			sourceTree = "<group>";
+		};
+		1342E5C42AA0F2F200AB342F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13677D682AA129A70020E159 /* PostCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1342E5C52AA0F2FA00AB342F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1342E5B32AA0EF5500AB342F /* PostsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13677D5C2AA110B70020E159 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				13677D5D2AA110DC0020E159 /* PostManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		13677D612AA1129E0020E159 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1342E5BA2AA0EF5600AB342F /* LaunchScreen.storyboard */,
+				1342E5B82AA0EF5600AB342F /* Assets.xcassets */,
+				1342E5BD2AA0EF5600AB342F /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		13677D652AA11AE90020E159 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				1342E5AF2AA0EF5500AB342F /* AppDelegate.swift */,
+				1342E5B12AA0EF5500AB342F /* SceneDelegate.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		13677D6A2AA131F40020E159 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				13677D792AA1EA700020E159 /* Date + Extensions.swift */,
+				13CCAABE2AA3C98E00AFE566 /* DateFormatter + Extensions.swift */,
+				136084E92AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift */,
+				13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */,
+				13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
+		13677D6D2AA1463B0020E159 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				13677D6E2AA146630020E159 /* Constants.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		13677D702AA1DB680020E159 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				13677D722AA1DBB10020E159 /* Posts */,
+				13677D712AA1DBA70020E159 /* PostDetail */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		13677D712AA1DBA70020E159 /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				13677D732AA1DBC20020E159 /* Controller */,
+				13CCAAB92AA3602F00AFE566 /* Model */,
+				13677D742AA1DC0F0020E159 /* View */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		13677D722AA1DBB10020E159 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				1342E5C52AA0F2FA00AB342F /* Controller */,
+				13CCAAB82AA3602600AFE566 /* Model */,
+				1342E5C42AA0F2F200AB342F /* View */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		13677D732AA1DBC20020E159 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13677D5A2AA10D160020E159 /* PostDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13677D742AA1DC0F0020E159 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13677D662AA129880020E159 /* PostDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13CCAAB82AA3602600AFE566 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13677D552AA0FD380020E159 /* Post.swift */,
+				13CCAAB62AA35F6D00AFE566 /* PostsResponse.swift */,
+				13677D7D2AA22C420020E159 /* SortOrder.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13CCAAB92AA3602F00AFE566 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13677D572AA0FDA20020E159 /* PostDetail.swift */,
+				13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +231,7 @@
 				1342E5A82AA0EF5500AB342F /* Sources */,
 				1342E5A92AA0EF5500AB342F /* Frameworks */,
 				1342E5AA2AA0EF5500AB342F /* Resources */,
+				1342E5C62AA0F41C00AB342F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -127,34 +282,61 @@
 			files = (
 				1342E5BC2AA0EF5600AB342F /* LaunchScreen.storyboard in Resources */,
 				1342E5B92AA0EF5600AB342F /* Assets.xcassets in Resources */,
-				1342E5B72AA0EF5500AB342F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1342E5C62AA0F41C00AB342F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1342E5A82AA0EF5500AB342F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1342E5B42AA0EF5500AB342F /* ViewController.swift in Sources */,
+				13CCAABB2AA3814100AFE566 /* UIImageView + Extensions.swift in Sources */,
+				1342E5B42AA0EF5500AB342F /* PostsViewController.swift in Sources */,
+				13677D7A2AA1EA700020E159 /* Date + Extensions.swift in Sources */,
+				136084EA2AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift in Sources */,
+				13677D6F2AA146630020E159 /* Constants.swift in Sources */,
+				13677D7E2AA22C420020E159 /* SortOrder.swift in Sources */,
+				13677D5E2AA110DC0020E159 /* PostManager.swift in Sources */,
+				13CCAAB72AA35F6D00AFE566 /* PostsResponse.swift in Sources */,
+				13677D5B2AA10D160020E159 /* PostDetailViewController.swift in Sources */,
+				13677D672AA129880020E159 /* PostDetailView.swift in Sources */,
 				1342E5B02AA0EF5500AB342F /* AppDelegate.swift in Sources */,
+				13CCAABD2AA38E1900AFE566 /* PostDetailResponse.swift in Sources */,
+				13677D692AA129A70020E159 /* PostCell.swift in Sources */,
+				13CCAABF2AA3C98E00AFE566 /* DateFormatter + Extensions.swift in Sources */,
+				13CCAB392AA50F0000AFE566 /* UILabel + Extensions.swift in Sources */,
+				13677D562AA0FD390020E159 /* Post.swift in Sources */,
 				1342E5B22AA0EF5500AB342F /* SceneDelegate.swift in Sources */,
+				13677D582AA0FDA20020E159 /* PostDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1342E5B52AA0EF5500AB342F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1342E5B62AA0EF5500AB342F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1342E5BA2AA0EF5600AB342F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +471,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 638X89N9H7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Posts/Info.plist;
+				INFOPLIST_FILE = Posts/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +483,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Posts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +501,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 638X89N9H7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Posts/Info.plist;
+				INFOPLIST_FILE = Posts/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +513,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "-.Posts";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

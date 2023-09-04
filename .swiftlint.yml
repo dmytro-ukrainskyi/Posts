@@ -1,0 +1,6 @@
+disabled_rules: # rule identifiers to exclude from running
+  - trailing_whitespace
+  - comment_spacing
+
+line_length:
+  ignores_comments: true
