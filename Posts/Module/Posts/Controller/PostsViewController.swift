@@ -33,15 +33,13 @@ final class PostsViewController: UIViewController {
     private func loadPosts() {
         Task {
             do {
-                // TODO: Display activity indicator
-                let activityIndicator = UIActivityIndicatorView(style: .large)
-                activityIndicator.startAnimating()
-                tableView.backgroundView = activityIndicator
-                
+                showActivityIndicator()
+
                 posts = try await postManager.fetchPosts()
                 
                 tableView.reloadData()
-                tableView.backgroundView = nil
+                
+                hideActivityIndicator()
             } catch {
                 // TODO: Handle Error
                 print(error)
@@ -117,6 +115,16 @@ extension PostsViewController {
         )
         
         navigationItem.rightBarButtonItem = sortButton
+    }
+    
+    private func showActivityIndicator() {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.startAnimating()
+        tableView.backgroundView = activityIndicator
+    }
+    
+    private func hideActivityIndicator() {
+        tableView.backgroundView = nil
     }
     
 }
