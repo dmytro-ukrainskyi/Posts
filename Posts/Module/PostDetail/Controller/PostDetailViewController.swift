@@ -17,6 +17,7 @@ final class PostDetailViewController: UIViewController {
 
     private let postManager: PostManagerProtocol = PostManager()
     private let postDetailView = PostDetailView()
+    private let activityIndicator = UIActivityIndicatorView()
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -31,9 +32,12 @@ final class PostDetailViewController: UIViewController {
         guard postID != nil else { return }
         Task {
             do {
-                // TODO: Display activity indicator
+                activityIndicator.startAnimating()
+                
                 let postDetail = try await postManager.fetchPostDetailWith(id: postID!)
                 setupPostDetailView(postDetail: postDetail)
+                
+                activityIndicator.stopAnimating()
             } catch {
                 // TODO: Handle error
                 print(error)
@@ -54,6 +58,7 @@ final class PostDetailViewController: UIViewController {
         }
         
         layoutPostDetailView()
+        
         postDetailView.setupUI()
     }
     
@@ -81,6 +86,19 @@ final class PostDetailViewController: UIViewController {
         view.addSubview(postDetailView)
         
         title = UIConstants.navigationTitle
+        
+        setupActivityIndicator()
+    }
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
 }
