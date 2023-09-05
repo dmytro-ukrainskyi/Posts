@@ -39,10 +39,11 @@ final class PostCell: UITableViewCell {
         
         button.backgroundColor = .darkGray
         button.layer.cornerRadius = 10
-        button.setTitle("Expand", for: .normal)
         
         return button
     }()
+    
+    var onExpandCollapseButtonTapped: (() -> Void)?
     
     /// Bad code. As cell's bounds are calculated wrong at cellForRowAt, it needs to know actual width to setup expand/collapse button.
     private(set) var labelsLeadingConstraintConstant: CGFloat = 24
@@ -58,7 +59,10 @@ final class PostCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupUI()
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(previewTextLabel)
+        contentView.addSubview(likesCountLabel)
+        contentView.addSubview(datePostedLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -73,15 +77,15 @@ final class PostCell: UITableViewCell {
         likesCountLabel.text = nil
         datePostedLabel.text = nil
         
+        previewTextLabel.numberOfLines = 2
         expandCollapseButton.removeFromSuperview()
         layoutLikesCountLabel()
     }
     
-    func setupUI() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(previewTextLabel)
-        contentView.addSubview(likesCountLabel)
-        contentView.addSubview(datePostedLabel)
+    func setupUI(expanded: Bool) {
+        if expanded {
+            previewTextLabel.numberOfLines = 0
+        }
         
         layoutTitleLabel()
         layoutPreviewTextLabel()
@@ -89,7 +93,7 @@ final class PostCell: UITableViewCell {
         layoutDatePostedLabel()
     }
     
-    func addExpandCollapseButtonIfNeeded() {
+    func addExpandCollapseButtonIfNeeded(cellIsExpanded: Bool) {
         guard let previewTextLabelExpectedWidth else { return }
         
         if !previewTextLabel.fits(
@@ -105,20 +109,25 @@ final class PostCell: UITableViewCell {
                 .constraint(equalTo: contentView.bottomAnchor, constant: -16)
             finalBottomConstraint.isActive = true
         }
-    }
-    
-    func expand() {
-        previewTextLabel.numberOfLines = 0
-        expandCollapseButton.setTitle("Collapse", for: .normal)
-    }
-    
-    func collapse() {
-        previewTextLabel.numberOfLines = 2
         
-        expandCollapseButton.setTitle("Expand", for: .normal)
+        setupExpandCollapseButton(cellIsExpanded: cellIsExpanded)
     }
     
     // MARK: - Private Methods
+    
+    private func setupExpandCollapseButton(cellIsExpanded: Bool) {
+        let action = UIAction { [weak self] _ in
+            self?.onExpandCollapseButtonTapped?()
+        }
+        
+        if cellIsExpanded {
+            expandCollapseButton.setTitle("Collapse", for: .normal)
+        } else {
+            expandCollapseButton.setTitle("Expand", for: .normal)
+        }
+        
+        expandCollapseButton.addAction(action, for: .touchUpInside)
+    }
     
     private func layoutTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -138,11 +138,14 @@ extension PostsViewController: UITableViewDataSource {
         }
         
         let post = posts[indexPath.row]
+        let cellIsExpanded = expandedCellsIndices.contains(indexPath.row)
         
         postCell.titleLabel.text = post.title
         postCell.previewTextLabel.text = post.previewText
         postCell.likesCountLabel.text = "❤️ \(post.likesCount)"
         postCell.datePostedLabel.text = post.datePosted.timeAgo()
+        
+        postCell.setupUI(expanded: cellIsExpanded)
         
         /*
          Bad code.
@@ -153,7 +156,16 @@ extension PostsViewController: UITableViewDataSource {
           (postCell.labelsLeadingConstraintConstant + postCell.labelsTrailingConstraintConstant)
         
         postCell.previewTextLabelExpectedWidth = previewTextLabelWidth
-        postCell.addExpandCollapseButtonIfNeeded()
+        postCell.addExpandCollapseButtonIfNeeded(cellIsExpanded: cellIsExpanded)
+        
+        postCell.onExpandCollapseButtonTapped = {
+            if cellIsExpanded {
+                self.expandedCellsIndices.remove(indexPath.row)
+            } else {
+                self.expandedCellsIndices.insert(indexPath.row)
+            }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
         
         return postCell
     }
