@@ -33,15 +33,16 @@ final class PostsViewController: UIViewController {
     private func loadPosts() {
         Task {
             do {
+                tableView.clearBackgroundView()
                 tableView.showActivityIndicator()
 
                 posts = try await postManager.fetchPosts()
                 
                 tableView.reloadData()
-                tableView.hideActivityIndicator()
+                tableView.clearBackgroundView()
             } catch {
-                // TODO: Handle Error
-                print(error)
+                tableView.clearBackgroundView()
+                tableView.show(error: error as NSError)
             }
         }
     }

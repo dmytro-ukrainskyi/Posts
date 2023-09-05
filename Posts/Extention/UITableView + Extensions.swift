@@ -15,7 +15,23 @@ extension UITableView {
         backgroundView = activityIndicator
     }
     
-    func hideActivityIndicator() {
+    func show(error: NSError) {
+        let errorLabel = UILabel()
+        backgroundView = errorLabel
+
+        errorLabel.numberOfLines = 0
+        errorLabel.textAlignment = .center
+        errorLabel.font = .boldSystemFont(ofSize: 20)
+        errorLabel.text = "\(error.localizedDescription) \n Error Code: \(error.code)"
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            errorLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+    
+    func clearBackgroundView() {
         backgroundView = nil
     }
     
