@@ -16,8 +16,8 @@ final class PostCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         
-        label.font = .boldSystemFont(ofSize: 20)
-        label.numberOfLines = 0
+        label.font = .boldSystemFont(ofSize: Constants.titleLabelFontSize)
+        label.numberOfLines = Constants.titleLabelNumberOfLines
         
         return label
     }()
@@ -25,7 +25,7 @@ final class PostCell: UITableViewCell {
     var previewTextLabel: UILabel = {
         let label = UILabel()
         
-        label.numberOfLines = 2
+        label.numberOfLines = Constants.previewTextLabelNumberOfLines
         
         return label
     }()
@@ -38,7 +38,7 @@ final class PostCell: UITableViewCell {
         let button = UIButton()
         
         button.backgroundColor = .darkGray
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Constants.buttonCornerRadius
         
         return button
     }()
@@ -46,8 +46,8 @@ final class PostCell: UITableViewCell {
     var onExpandCollapseButtonTapped: (() -> Void)?
     
     /// Bad code. As cell's bounds are calculated wrong at cellForRowAt, it needs to know actual width to setup expand/collapse button.
-    private(set) var labelsLeadingConstraintConstant: CGFloat = 24
-    private(set) var labelsTrailingConstraintConstant: CGFloat = -24
+    private(set) var labelsLeadingConstraintConstant: CGFloat = Constants.horizontalSpacing * 3
+    private(set) var labelsTrailingConstraintConstant: CGFloat = Constants.horizontalSpacing * -3
     var previewTextLabelExpectedWidth: CGFloat?
     
     // MARK: Private Properties
@@ -77,14 +77,14 @@ final class PostCell: UITableViewCell {
         likesCountLabel.text = nil
         datePostedLabel.text = nil
         
-        previewTextLabel.numberOfLines = 2
+        previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLines
         expandCollapseButton.removeFromSuperview()
         layoutLikesCountLabel()
     }
     
     func setupUI(expanded: Bool) {
         if expanded {
-            previewTextLabel.numberOfLines = 0
+            previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLinesToExpand
         }
         
         layoutTitleLabel()
@@ -106,7 +106,8 @@ final class PostCell: UITableViewCell {
             finalBottomConstraint.isActive = false
             finalBottomConstraint = expandCollapseButton
                 .bottomAnchor
-                .constraint(equalTo: contentView.bottomAnchor, constant: -16)
+                .constraint(equalTo: contentView.bottomAnchor,
+                            constant: Constants.verticalSpacing * -2)
             finalBottomConstraint.isActive = true
         }
         
@@ -121,9 +122,9 @@ final class PostCell: UITableViewCell {
         }
         
         if cellIsExpanded {
-            expandCollapseButton.setTitle("Collapse", for: .normal)
+            expandCollapseButton.setTitle(Constants.buttonExpandTitle, for: .normal)
         } else {
-            expandCollapseButton.setTitle("Expand", for: .normal)
+            expandCollapseButton.setTitle(Constants.buttonCollapseTitle, for: .normal)
         }
         
         expandCollapseButton.addAction(action, for: .touchUpInside)
@@ -140,7 +141,8 @@ final class PostCell: UITableViewCell {
         NSLayoutConstraint.activate([
             titleLabel
                 .topAnchor
-                .constraint(equalTo: contentView.topAnchor, constant: 8),
+                .constraint(equalTo: contentView.topAnchor,
+                            constant: Constants.verticalSpacing),
             titleLabel
                 .leadingAnchor
                 .constraint(equalTo: contentView.leadingAnchor,
@@ -163,7 +165,8 @@ final class PostCell: UITableViewCell {
         NSLayoutConstraint.activate([
             previewTextLabel
                 .topAnchor
-                .constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+                .constraint(equalTo: titleLabel.bottomAnchor,
+                            constant: Constants.verticalSpacing),
             previewTextLabel
                 .leadingAnchor
                 .constraint(equalTo: contentView.leadingAnchor,
@@ -181,18 +184,20 @@ final class PostCell: UITableViewCell {
         NSLayoutConstraint.activate([
             likesCountLabel
                 .topAnchor
-                .constraint(equalTo: previewTextLabel.bottomAnchor, constant: 16),
+                .constraint(equalTo: previewTextLabel.bottomAnchor,
+                            constant: Constants.verticalSpacing * 2),
             likesCountLabel
                 .leadingAnchor
                 .constraint(equalTo: contentView.leadingAnchor,
                             constant: labelsLeadingConstraintConstant)
         ])
         
-        //Lowering final bottom constraint priority fixes conflicting constraints warning UIKit bug
         finalBottomConstraint = likesCountLabel
             .bottomAnchor
-            .constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            .constraint(equalTo: contentView.bottomAnchor,
+                        constant: Constants.verticalSpacing * -2)
         
+        //Lowering final bottom constraint priority fixes conflicting constraints warning UIKit bug
         finalBottomConstraint.priority = UILayoutPriority(999)
         
         finalBottomConstraint.isActive = true
@@ -218,17 +223,44 @@ final class PostCell: UITableViewCell {
         NSLayoutConstraint.activate([
             expandCollapseButton
                 .topAnchor
-                .constraint(equalTo: likesCountLabel.bottomAnchor, constant: 16),
+                .constraint(equalTo: likesCountLabel.bottomAnchor,
+                            constant: Constants.verticalSpacing * 2),
             expandCollapseButton
                 .leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: Constants.horizontalSpacing * 2),
             expandCollapseButton
                 .trailingAnchor
-                .constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: Constants.horizontalSpacing * -2),
             expandCollapseButton
                 .heightAnchor
-                .constraint(equalToConstant: 50)
+                .constraint(equalToConstant: Constants.buttonHeight)
         ])
+    }
+    
+}
+
+// MARK: - Constants
+
+private extension PostCell {
+    
+    enum Constants {
+        
+        static let titleLabelFontSize: CGFloat = 20
+        static let titleLabelNumberOfLines: Int = 0
+        
+        static let previewTextLabelNumberOfLines: Int = 2
+        static let previewTextLabelNumberOfLinesToExpand: Int = 0
+        
+        static let buttonCornerRadius: CGFloat = 10
+        static let buttonHeight: CGFloat = 50
+        static let buttonExpandTitle = "Expand"
+        static let buttonCollapseTitle = "Collapse"
+        
+        static let verticalSpacing: CGFloat = 8
+        static let horizontalSpacing: CGFloat = 8
+        
     }
     
 }
