@@ -17,7 +17,7 @@ final class PostsViewController: UIViewController {
     
     private let tableView = UITableView()
     
-    private let expandedCellsIndices: [Int] = []
+    private var expandedCellsIndices: IndexSet = []
     
     // MARK: Lifecycle
     
@@ -144,6 +144,17 @@ extension PostsViewController: UITableViewDataSource {
         postCell.likesCountLabel.text = "❤️ \(post.likesCount)"
         postCell.datePostedLabel.text = post.datePosted.timeAgo()
         
+        /*
+         Bad code.
+         As cell's bounds are calculated wrong at cellForRowAt,
+         it needs to know actual width to setup expand/collapse button.
+         */
+        let previewTextLabelWidth = tableView.bounds.width -
+          (postCell.labelsLeadingConstraintConstant + postCell.labelsTrailingConstraintConstant)
+        
+        postCell.previewTextLabelExpectedWidth = previewTextLabelWidth
+        postCell.setupExpandCollapseButton()
+        
         return postCell
     }
     
@@ -151,20 +162,7 @@ extension PostsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension PostsViewController: UITableViewDelegate {
-    
-    func tableView(
-        _ tableView: UITableView,
-        willDisplay cell: UITableViewCell,
-        forRowAt indexPath: IndexPath
-    ) {
-        let postCell = (cell as! PostCell)
-        
-        if postCell.previewTextLabel.isTruncated {
-            postCell.addExpandCollapseButton()
-        }
-    }
-    
+extension PostsViewController: UITableViewDelegate {    
     func tableView(
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
@@ -176,7 +174,6 @@ extension PostsViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
         let postDetailViewController = PostDetailViewController()
