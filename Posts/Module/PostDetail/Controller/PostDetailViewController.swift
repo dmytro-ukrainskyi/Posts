@@ -108,12 +108,13 @@ final class PostDetailViewController: UIViewController {
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
         errorLabel.font = .boldSystemFont(ofSize: 20)
-        errorLabel.text = "\(error.localizedDescription) \n Error Code: \(error.code)"
+        errorLabel.text = "\(error.localizedDescription) \n\n Error Code: \(error.code)"
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32)
         ])
     }
     

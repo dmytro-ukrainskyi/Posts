@@ -22,12 +22,13 @@ extension UITableView {
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
         errorLabel.font = .boldSystemFont(ofSize: 20)
-        errorLabel.text = "\(error.localizedDescription) \n Error Code: \(error.code)"
+        errorLabel.text = "\(error.localizedDescription) \n\n Error Code: \(error.code)"
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             errorLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            errorLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            errorLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            errorLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -32)
         ])
     }
     
