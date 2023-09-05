@@ -34,8 +34,14 @@ final class PostsViewController: UIViewController {
         Task {
             do {
                 // TODO: Display activity indicator
+                let activityIndicator = UIActivityIndicatorView(style: .large)
+                activityIndicator.startAnimating()
+                tableView.backgroundView = activityIndicator
+                
                 posts = try await postManager.fetchPosts()
+                
                 tableView.reloadData()
+                tableView.backgroundView = nil
             } catch {
                 // TODO: Handle Error
                 print(error)
