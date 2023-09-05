@@ -39,8 +39,8 @@ final class PostDetailViewController: UIViewController {
                 
                 activityIndicator.stopAnimating()
             } catch {
-                // TODO: Handle error
-                print(error)
+                activityIndicator.stopAnimating()
+                show(error: error as NSError)
             }
         }
     }
@@ -98,6 +98,22 @@ final class PostDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    func show(error: NSError) {
+        let errorLabel = UILabel()
+        view.addSubview(errorLabel)
+
+        errorLabel.numberOfLines = 0
+        errorLabel.textAlignment = .center
+        errorLabel.font = .boldSystemFont(ofSize: 20)
+        errorLabel.text = "\(error.localizedDescription) \n Error Code: \(error.code)"
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
