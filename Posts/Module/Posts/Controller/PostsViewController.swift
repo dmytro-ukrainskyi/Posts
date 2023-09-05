@@ -58,6 +58,15 @@ final class PostsViewController: UIViewController {
         tableView.reloadData()
     }
     
+    @objc
+    func handleRefreshControl() {
+        loadPosts()
+        
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
 }
 
 // MARK: - UI
@@ -81,6 +90,15 @@ extension PostsViewController {
         
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.identifier)
         
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self,
+                                            action: #selector(handleRefreshControl),
+                                            for: .valueChanged)
+        
+        layoutTableView()
+    }
+    
+    private func layoutTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -89,7 +107,6 @@ extension PostsViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
     }
     
     private func setupNavigationBar() {
