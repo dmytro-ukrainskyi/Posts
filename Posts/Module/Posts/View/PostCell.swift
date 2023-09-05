@@ -38,7 +38,7 @@ final class PostCell: UITableViewCell {
         let button = UIButton()
         
         button.backgroundColor = .darkGray
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = 10
         button.setTitle("Expand", for: .normal)
         
         return button
@@ -48,6 +48,10 @@ final class PostCell: UITableViewCell {
     private(set) var labelsLeadingConstraintConstant: CGFloat = 24
     private(set) var labelsTrailingConstraintConstant: CGFloat = -24
     var previewTextLabelExpectedWidth: CGFloat?
+    
+    // MARK: Private Properties
+    
+    private var finalBottomConstraint = NSLayoutConstraint()
     
     // MARK: Init
     
@@ -63,34 +67,43 @@ final class PostCell: UITableViewCell {
     
     // MARK: Public Methods
     
+    override func prepareForReuse() {
+        titleLabel.text = nil
+        previewTextLabel.text = nil
+        likesCountLabel.text = nil
+        datePostedLabel.text = nil
+        
+        expandCollapseButton.removeFromSuperview()
+        layoutLikesCountLabel()
+    }
+    
     func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(previewTextLabel)
         contentView.addSubview(likesCountLabel)
         contentView.addSubview(datePostedLabel)
-        contentView.addSubview(expandCollapseButton)
         
         layoutTitleLabel()
         layoutPreviewTextLabel()
         layoutLikesCountLabel()
         layoutDatePostedLabel()
-        layoutExpandCollapseButton()
     }
     
-    override func prepareForReuse() {
-        expandCollapseButton.isHidden = true
-    }
-    
-    func setupExpandCollapseButton() {
+    func addExpandCollapseButtonIfNeeded() {
         guard let previewTextLabelExpectedWidth else { return }
         
         if !previewTextLabel.fits(
             numberOfLines: 2,
             withWidth: previewTextLabelExpectedWidth
         ) {
-            expandCollapseButton.isHidden = false
-        } else {
-            expandCollapseButton.isHidden = true
+            contentView.addSubview(expandCollapseButton)
+            layoutExpandCollapseButton()
+            
+            finalBottomConstraint.isActive = false
+            finalBottomConstraint = expandCollapseButton
+                .bottomAnchor
+                .constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            finalBottomConstraint.isActive = true
         }
     }
     
@@ -165,6 +178,15 @@ final class PostCell: UITableViewCell {
                 .constraint(equalTo: contentView.leadingAnchor,
                             constant: labelsLeadingConstraintConstant)
         ])
+        
+        //Lowering final bottom constraint priority fixes conflicting constraints warning UIKit bug
+        finalBottomConstraint = likesCountLabel
+            .bottomAnchor
+            .constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        
+        finalBottomConstraint.priority = UILayoutPriority(999)
+        
+        finalBottomConstraint.isActive = true
     }
     
     private func layoutDatePostedLabel() {
@@ -198,15 +220,6 @@ final class PostCell: UITableViewCell {
                 .heightAnchor
                 .constraint(equalToConstant: 50)
         ])
-        
-        //Lowering final bottom constraint priority fixes conflicting constraints warning UIKit bug
-        let bottomConstraint = expandCollapseButton
-            .bottomAnchor
-            .constraint(equalTo: contentView.bottomAnchor, constant: -16)
-        
-        bottomConstraint.priority = UILayoutPriority(999)
-        
-        bottomConstraint.isActive = true
     }
     
 }

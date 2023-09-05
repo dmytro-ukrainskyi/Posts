@@ -153,7 +153,7 @@ extension PostsViewController: UITableViewDataSource {
           (postCell.labelsLeadingConstraintConstant + postCell.labelsTrailingConstraintConstant)
         
         postCell.previewTextLabelExpectedWidth = previewTextLabelWidth
-        postCell.setupExpandCollapseButton()
+        postCell.addExpandCollapseButtonIfNeeded()
         
         return postCell
     }
