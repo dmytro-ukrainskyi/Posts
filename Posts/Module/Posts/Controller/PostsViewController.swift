@@ -33,13 +33,12 @@ final class PostsViewController: UIViewController {
     private func loadPosts() {
         Task {
             do {
-                showActivityIndicator()
+                tableView.showActivityIndicator()
 
                 posts = try await postManager.fetchPosts()
                 
                 tableView.reloadData()
-                
-                hideActivityIndicator()
+                tableView.hideActivityIndicator()
             } catch {
                 // TODO: Handle Error
                 print(error)

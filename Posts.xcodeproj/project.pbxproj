@@ -27,6 +27,7 @@
 		13CCAABD2AA38E1900AFE566 /* PostDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */; };
 		13CCAABF2AA3C98E00AFE566 /* DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABE2AA3C98E00AFE566 /* DateFormatter + Extensions.swift */; };
 		13CCAB392AA50F0000AFE566 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */; };
+		13D8F5242AA7ADE500119557 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D8F5232AA7ADE500119557 /* UITableView + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailResponse.swift; sourceTree = "<group>"; };
 		13CCAABE2AA3C98E00AFE566 /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
+		13D8F5232AA7ADE500119557 /* UITableView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				136084E92AA29DF000282242 /* RelativeDateTimeFormatter + Extensions.swift */,
 				13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */,
 				13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */,
+				13D8F5232AA7ADE500119557 /* UITableView + Extensions.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				13CCAB392AA50F0000AFE566 /* UILabel + Extensions.swift in Sources */,
 				13677D562AA0FD390020E159 /* Post.swift in Sources */,
 				1342E5B22AA0EF5500AB342F /* SceneDelegate.swift in Sources */,
+				13D8F5242AA7ADE500119557 /* UITableView + Extensions.swift in Sources */,
 				13677D582AA0FDA20020E159 /* PostDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
