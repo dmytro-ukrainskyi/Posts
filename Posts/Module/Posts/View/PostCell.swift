@@ -122,9 +122,9 @@ final class PostCell: UITableViewCell {
         }
         
         if cellIsExpanded {
-            expandCollapseButton.setTitle(Constants.buttonExpandTitle, for: .normal)
-        } else {
             expandCollapseButton.setTitle(Constants.buttonCollapseTitle, for: .normal)
+        } else {
+            expandCollapseButton.setTitle(Constants.buttonExpandTitle, for: .normal)
         }
         
         expandCollapseButton.addAction(action, for: .touchUpInside)
