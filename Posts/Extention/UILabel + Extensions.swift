@@ -11,7 +11,7 @@ extension UILabel {
     
     func fits(numberOfLines: Int, withWidth width: CGFloat) -> Bool {
         guard let text, let font else { return false }
-                
+        
         let textRect = text.boundingRect(
             with: CGSize(width: width, height: .greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,

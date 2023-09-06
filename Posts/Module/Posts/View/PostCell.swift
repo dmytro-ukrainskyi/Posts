@@ -121,7 +121,7 @@ final class PostCell: UITableViewCell {
         setupExpandCollapseButton(cellIsExpanded: cellIsExpanded)
     }
     
-    // MARK: - Private Methods
+    // MARK: Private Methods
     
     private func setupExpandCollapseButton(cellIsExpanded: Bool) {
         let action = UIAction { [weak self] _ in

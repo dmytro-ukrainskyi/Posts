@@ -18,7 +18,7 @@ extension UITableView {
     func show(error: NSError) {
         let errorLabel = UILabel()
         backgroundView = errorLabel
-
+        
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
         errorLabel.font = .boldSystemFont(ofSize: 20)

@@ -19,7 +19,7 @@ struct Post: Decodable {
     var datePosted: Date {
         Date(timeIntervalSince1970: TimeInterval(timestamp))
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "postId"
         case timestamp = "timeshamp" // Fixed API's Typo

@@ -71,7 +71,7 @@ final class PostDetailView: UIView {
         contentView.addSubview(titleLabel)
         contentView.addSubview(textLabel)
         imagePlaceholderView.addSubview(imageView)
-                
+        
         addSubview(footerView)
         footerView.addSubview(likesCountLabel)
         footerView.addSubview(datePostedLabel)
@@ -80,7 +80,7 @@ final class PostDetailView: UIView {
         layoutContentView()
         layoutImagePlaceholderView()
         layoutFooterView()
-
+        
         layoutImageView()
         layoutTitleLabel()
         layoutTextLabel()

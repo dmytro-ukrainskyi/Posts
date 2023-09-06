@@ -14,8 +14,8 @@ extension Date {
             let locale = Locale(identifier: LocaleConstants.defaultLocale)
             
             return self.formatted(
-                    .relative(presentation: .numeric)
-                    .locale(locale))
+                .relative(presentation: .numeric)
+                .locale(locale))
         } else {
             return RelativeDateTimeFormatter
                 .defaultFormatter

@@ -18,7 +18,7 @@ final class PostManager: PostManagerProtocol {
     
     // MARK: Private Properties
     
-    private let session = URLSession.shared
+    private let urlSession = URLSession.shared
     private let jsonDecoder = JSONDecoder()
     
     // MARK: Public Methods
@@ -52,7 +52,7 @@ final class PostManager: PostManagerProtocol {
     // MARK: Private Methods
     
     private func fetchData<T: Decodable>(with url: URL) async throws -> T {
-        let (data, response) = try await session.data(from: url)
+        let (data, response) = try await urlSession.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
             throw generateError(description: "Bad Response")

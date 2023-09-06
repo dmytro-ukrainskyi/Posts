@@ -23,7 +23,7 @@ extension UIImageView {
         ])
         
         activityIndicator.startAnimating()
-
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
                 DispatchQueue.main.async {

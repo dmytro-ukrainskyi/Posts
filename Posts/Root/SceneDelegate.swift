@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let postsViewController = PostsViewController()
         let navigationController = UINavigationController(
             rootViewController: postsViewController)
-                
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

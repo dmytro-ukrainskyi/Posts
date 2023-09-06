@@ -34,7 +34,7 @@ final class PostsViewController: UIViewController {
         Task {
             do {
                 tableView.showActivityIndicator()
-
+                
                 posts = try await postManager.fetchPosts()
                 
                 tableView.reloadData()

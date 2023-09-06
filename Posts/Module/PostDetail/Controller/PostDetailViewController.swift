@@ -12,13 +12,13 @@ final class PostDetailViewController: UIViewController {
     // MARK: Public Properties
     
     var postID: Int?
-
+    
     // MARK: Private Properties
-
+    
     private let postManager: PostManagerProtocol = PostManager()
     private let postDetailView = PostDetailView()
     private let activityIndicator = UIActivityIndicatorView()
-
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ final class PostDetailViewController: UIViewController {
         postDetailView.textLabel.text = postDetail.text
         postDetailView.likesCountLabel.text = "❤️ \(postDetail.likesCount)"
         postDetailView.datePostedLabel.text = postDetail.datePosted.formatted()
-                
+        
         if let imageURL = URL(string: postDetail.imageURL) {
             postDetailView.imageView.setImageFrom(url: imageURL)
         } else {
@@ -64,7 +64,7 @@ final class PostDetailViewController: UIViewController {
     
     private func layoutPostDetailView() {
         postDetailView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             postDetailView
                 .topAnchor
@@ -104,7 +104,7 @@ final class PostDetailViewController: UIViewController {
     func show(error: NSError) {
         let errorLabel = UILabel()
         view.addSubview(errorLabel)
-
+        
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
         errorLabel.font = .boldSystemFont(ofSize: 20)
