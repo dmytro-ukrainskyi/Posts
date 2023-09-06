@@ -63,6 +63,11 @@ final class PostCell: UITableViewCell {
         contentView.addSubview(previewTextLabel)
         contentView.addSubview(likesCountLabel)
         contentView.addSubview(datePostedLabel)
+        
+        layoutTitleLabel()
+        layoutPreviewTextLabel()
+        layoutLikesCountLabel()
+        layoutDatePostedLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -78,19 +83,21 @@ final class PostCell: UITableViewCell {
         datePostedLabel.text = nil
         
         previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLines
+        
+        finalBottomConstraint.isActive = false
+        finalBottomConstraint = likesCountLabel
+            .bottomAnchor
+            .constraint(equalTo: contentView.bottomAnchor,
+                        constant: Constants.verticalSpacing * -2)
+        finalBottomConstraint.isActive = true
+        
         expandCollapseButton.removeFromSuperview()
-        layoutLikesCountLabel()
     }
     
     func setupUI(expanded: Bool) {
         if expanded {
             previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLinesToExpand
         }
-        
-        layoutTitleLabel()
-        layoutPreviewTextLabel()
-        layoutLikesCountLabel()
-        layoutDatePostedLabel()
     }
     
     func addExpandCollapseButtonIfNeeded(cellIsExpanded: Bool) {
