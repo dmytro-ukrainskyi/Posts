@@ -63,6 +63,7 @@ final class PostsViewController: UIViewController {
         loadPosts()
         
         DispatchQueue.main.async {
+            self.tableView.refreshControl?.backgroundColor = .white
             self.tableView.refreshControl?.endRefreshing()
         }
     }
