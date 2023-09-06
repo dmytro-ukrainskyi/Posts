@@ -22,19 +22,4 @@ extension UILabel {
         return textRect.height <= font.lineHeight * CGFloat(numberOfLines)
     }
     
-    var isTruncated: Bool {
-        guard let text, let font else { return false }
-        
-        layoutIfNeeded()
-        
-        let textRect = text.boundingRect(
-            with: CGSize(width: bounds.width, height: .greatestFiniteMagnitude),
-            options: .usesLineFragmentOrigin,
-            attributes: [NSAttributedString.Key.font: font],
-            context: nil
-        )
-        
-        return textRect.size.height > bounds.size.height
-    }
-    
 }

@@ -33,7 +33,6 @@ final class PostsViewController: UIViewController {
     private func loadPosts() {
         Task {
             do {
-                tableView.clearBackgroundView()
                 tableView.showActivityIndicator()
 
                 posts = try await postManager.fetchPosts()
@@ -41,7 +40,6 @@ final class PostsViewController: UIViewController {
                 tableView.reloadData()
                 tableView.clearBackgroundView()
             } catch {
-                tableView.clearBackgroundView()
                 tableView.show(error: error as NSError)
             }
         }
@@ -63,7 +61,6 @@ final class PostsViewController: UIViewController {
         loadPosts()
         
         DispatchQueue.main.async {
-            self.tableView.refreshControl?.backgroundColor = .white
             self.tableView.refreshControl?.endRefreshing()
         }
     }
@@ -79,6 +76,7 @@ extension PostsViewController {
         
         setupTableView()
         setupNavigationBar()
+        setupRefreshControl()
     }
     
     private func setupTableView() {
@@ -91,12 +89,15 @@ extension PostsViewController {
         
         tableView.register(PostCell.self, forCellReuseIdentifier: PostCell.identifier)
         
+        layoutTableView()
+    }
+    
+    private func setupRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.backgroundColor = .systemBackground
         tableView.refreshControl?.addTarget(self,
                                             action: #selector(handleRefreshControl),
                                             for: .valueChanged)
-        
-        layoutTableView()
     }
     
     private func layoutTableView() {
@@ -133,16 +134,6 @@ extension PostsViewController {
         )
         
         navigationItem.rightBarButtonItem = sortButton
-    }
-    
-    private func showActivityIndicator() {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.startAnimating()
-        tableView.backgroundView = activityIndicator
-    }
-    
-    private func hideActivityIndicator() {
-        tableView.backgroundView = nil
     }
     
 }
