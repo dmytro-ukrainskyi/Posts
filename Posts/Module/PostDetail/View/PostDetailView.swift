@@ -9,62 +9,44 @@ import UIKit
 
 final class PostDetailView: UIView {
     
-    // MARK: Public Properties
-    let imageView: UIImageView = {
-        let imageView = UIImageView()
-        
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
-    
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .boldSystemFont(ofSize: 20)
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    let textLabel: UILabel = {
-        let label = UILabel()
-        
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    let likesCountLabel = UILabel()
-    
-    let datePostedLabel = UILabel()
-    
     // MARK: Private Properties
+    private let imageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let textLabel = UILabel()
+    private let likesCountLabel = UILabel()
+    private let datePostedLabel = UILabel()
     
     private let scrollView = UIScrollView()
-    
     private let contentView = UIView()
-    
-    private let imagePlaceholderView: UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .secondarySystemBackground
-        
-        return view
-    }()
-    
-    private let footerView: UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .systemBackground
-        
-        return view
-    }()
+    private let imagePlaceholderView = UIView()
+    private let footerView = UIView()
     
     // MARK: Public Methods
     
-    func setupUI() {
+    func configure(
+        imageURL: String,
+        title: String,
+        text: String,
+        likesCount: String,
+        datePosted: String
+    ) {
+        if let imageURL = URL(string: imageURL) {
+            imageView.setImageFrom(url: imageURL)
+        } else {
+            imageView.setPlaceholderImage()
+        }
+        
+        titleLabel.text = title
+        textLabel.text = text
+        likesCountLabel.text = likesCount
+        datePostedLabel.text = datePosted
+        
+        setupUI()
+    }
+    
+    // MARK: Private Methods
+    
+    private func setupUI() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(imagePlaceholderView)
@@ -86,9 +68,19 @@ final class PostDetailView: UIView {
         layoutTextLabel()
         layoutLikesCountLabel()
         layoutDatePostedLabel()
+        
+        imagePlaceholderView.backgroundColor = .secondarySystemBackground
+        
+        footerView.backgroundColor = .systemBackground
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
+        titleLabel.font = .boldSystemFont(ofSize: Constants.titleLabelFontSize)
+        titleLabel.numberOfLines = Constants.titleLabelNumberOfLines
+        
+        textLabel.numberOfLines = Constants.textLabelNumberOfLines
     }
-    
-    // MARK: Private Methods
     
     private func layoutScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +138,7 @@ final class PostDetailView: UIView {
                 .constraint(equalTo: self.bottomAnchor),
             footerView
                 .heightAnchor
-                .constraint(equalToConstant: 42)
+                .constraint(equalToConstant: Constants.footerHeight)
         ])
     }
     
@@ -165,7 +157,7 @@ final class PostDetailView: UIView {
                 .constraint(equalTo: contentView.trailingAnchor),
             imagePlaceholderView
                 .heightAnchor
-                .constraint(equalToConstant: 256)
+                .constraint(equalToConstant: Constants.imageHeight)
         ])
     }
     
@@ -194,13 +186,16 @@ final class PostDetailView: UIView {
         NSLayoutConstraint.activate([
             titleLabel
                 .topAnchor
-                .constraint(equalTo: imagePlaceholderView.bottomAnchor, constant: 24),
+                .constraint(equalTo: imagePlaceholderView.bottomAnchor,
+                            constant: Constants.verticalSpacing * 3),
             titleLabel
                 .leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: Constants.horizontalSpacing * 2),
             titleLabel
                 .trailingAnchor
-                .constraint(equalTo: contentView.trailingAnchor, constant: -16)
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: Constants.horizontalSpacing * -2)
         ])
     }
     
@@ -210,16 +205,20 @@ final class PostDetailView: UIView {
         NSLayoutConstraint.activate([
             textLabel
                 .topAnchor
-                .constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+                .constraint(equalTo: titleLabel.bottomAnchor,
+                            constant: Constants.verticalSpacing * 3),
             textLabel
                 .leadingAnchor
-                .constraint(equalTo: contentView.leadingAnchor, constant: 16),
+                .constraint(equalTo: contentView.leadingAnchor,
+                            constant: Constants.horizontalSpacing * 2),
             textLabel
                 .trailingAnchor
-                .constraint(equalTo: contentView.trailingAnchor, constant: -16),
+                .constraint(equalTo: contentView.trailingAnchor,
+                            constant: Constants.horizontalSpacing * -2),
             textLabel
                 .bottomAnchor
-                .constraint(equalTo: contentView.bottomAnchor, constant: -24)
+                .constraint(equalTo: contentView.bottomAnchor,
+                            constant: Constants.verticalSpacing * -3)
         ])
     }
     
@@ -229,10 +228,12 @@ final class PostDetailView: UIView {
         NSLayoutConstraint.activate([
             likesCountLabel
                 .leadingAnchor
-                .constraint(equalTo: footerView.leadingAnchor, constant: 16),
+                .constraint(equalTo: footerView.leadingAnchor,
+                            constant: Constants.horizontalSpacing * 2),
             likesCountLabel
                 .bottomAnchor
-                .constraint(equalTo: footerView.bottomAnchor, constant: -8)
+                .constraint(equalTo: footerView.bottomAnchor,
+                            constant: Constants.verticalSpacing * -1)
         ])
     }
     
@@ -242,11 +243,35 @@ final class PostDetailView: UIView {
         NSLayoutConstraint.activate([
             datePostedLabel
                 .trailingAnchor
-                .constraint(equalTo: footerView.trailingAnchor, constant: -16),
+                .constraint(equalTo: footerView.trailingAnchor,
+                            constant: Constants.horizontalSpacing * -2),
             datePostedLabel
                 .bottomAnchor
-                .constraint(equalTo: footerView.bottomAnchor, constant: -8)
+                .constraint(equalTo: footerView.bottomAnchor,
+                            constant: Constants.verticalSpacing * -1)
         ])
+    }
+    
+}
+
+// MARK: - Constants
+
+private extension PostDetailView {
+    
+    enum Constants {
+        
+        static let titleLabelFontSize: CGFloat = 20
+        static let titleLabelNumberOfLines: Int = 0
+        
+        static let textLabelNumberOfLines: Int = 0
+        
+        static let imageHeight: CGFloat = 256
+        
+        static let footerHeight: CGFloat = 42
+        
+        static let verticalSpacing: CGFloat = 8
+        static let horizontalSpacing: CGFloat = 8
+        
     }
     
 }

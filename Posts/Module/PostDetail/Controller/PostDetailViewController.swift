@@ -45,24 +45,25 @@ final class PostDetailViewController: UIViewController {
         }
     }
     
-    private func setupPostDetailView(postDetail: PostDetail) {
-        postDetailView.titleLabel.text = postDetail.title
-        postDetailView.textLabel.text = postDetail.text
-        postDetailView.likesCountLabel.text = "❤️ \(postDetail.likesCount)"
-        postDetailView.datePostedLabel.text = postDetail.datePosted.formatted()
-        
-        if let imageURL = URL(string: postDetail.imageURL) {
-            postDetailView.imageView.setImageFrom(url: imageURL)
-        } else {
-            postDetailView.imageView.setPlaceholderImage()
-        }
+}
+
+// MARK: - UI
+
+private extension PostDetailViewController {
+    
+    func setupPostDetailView(postDetail: PostDetail) {
+        postDetailView.configure(
+            imageURL: postDetail.imageURL,
+            title: postDetail.title,
+            text: postDetail.text,
+            likesCount: "❤️ \(postDetail.likesCount)",
+            datePosted: postDetail.datePosted.formatted()
+        )
         
         layoutPostDetailView()
-        
-        postDetailView.setupUI()
     }
     
-    private func layoutPostDetailView() {
+    func layoutPostDetailView() {
         postDetailView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -81,7 +82,7 @@ final class PostDetailViewController: UIViewController {
         ])
     }
     
-    private func setupUI() {
+    func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(postDetailView)
         
@@ -90,7 +91,7 @@ final class PostDetailViewController: UIViewController {
         setupActivityIndicator()
     }
     
-    private func setupActivityIndicator() {
+    func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
