@@ -29,12 +29,13 @@ final class PostDetailViewController: UIViewController {
     
     // MARK: Private Methods
     private func loadPostDetail() {
-        guard postID != nil else { return }
+        guard let postID else { return }
+        
         Task {
             do {
                 activityIndicator.startAnimating()
                 
-                let postDetail = try await postManager.fetchPostDetailWith(id: postID!)
+                let postDetail = try await postManager.fetchPostDetailWith(id: postID)
                 setupPostDetailView(postDetail: postDetail)
                 
                 activityIndicator.stopAnimating()
