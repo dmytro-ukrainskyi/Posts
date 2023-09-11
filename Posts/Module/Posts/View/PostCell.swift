@@ -13,36 +13,6 @@ final class PostCell: UITableViewCell {
     
     // MARK: Public Properties
     
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .boldSystemFont(ofSize: Constants.titleLabelFontSize)
-        label.numberOfLines = Constants.titleLabelNumberOfLines
-        
-        return label
-    }()
-    
-    var previewTextLabel: UILabel = {
-        let label = UILabel()
-        
-        label.numberOfLines = Constants.previewTextLabelNumberOfLines
-        
-        return label
-    }()
-    
-    var likesCountLabel = UILabel()
-    
-    var datePostedLabel = UILabel()
-    
-    var expandCollapseButton: UIButton = {
-        let button = UIButton()
-        
-        button.backgroundColor = .darkGray
-        button.layer.cornerRadius = Constants.buttonCornerRadius
-        
-        return button
-    }()
-    
     var onExpandCollapseButtonTapped: (() -> Void)?
     
     /// Bad code. As cell's bounds are calculated wrong at cellForRowAt, it needs to know actual width to setup expand/collapse button.
@@ -51,6 +21,12 @@ final class PostCell: UITableViewCell {
     var previewTextLabelExpectedWidth: CGFloat?
     
     // MARK: Private Properties
+    
+    private let titleLabel = UILabel()
+    private let previewTextLabel = UILabel()
+    private let likesCountLabel = UILabel()
+    private let datePostedLabel = UILabel()
+    private let expandCollapseButton = UIButton()
     
     private var finalBottomConstraint = NSLayoutConstraint()
     
@@ -94,13 +70,32 @@ final class PostCell: UITableViewCell {
         expandCollapseButton.removeFromSuperview()
     }
     
+    func configure(title: String, previewText: String, likesCount: String, datePosted: String) {
+        titleLabel.text = title
+        previewTextLabel.text = previewText
+        likesCountLabel.text = likesCount
+        datePostedLabel.text = datePosted
+    }
+    
     func setupUI(expanded: Bool) {
+        titleLabel.font = .boldSystemFont(ofSize: Constants.titleLabelFontSize)
+        titleLabel.numberOfLines = Constants.titleLabelNumberOfLines
+        
+        previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLines
+        
+        expandCollapseButton.backgroundColor = .darkGray
+        expandCollapseButton.layer.cornerRadius = Constants.buttonCornerRadius
+        
         if expanded {
             previewTextLabel.numberOfLines = Constants.previewTextLabelNumberOfLinesToExpand
         }
+        
+        addExpandCollapseButtonIfNeeded(cellIsExpanded: expanded)
     }
     
-    func addExpandCollapseButtonIfNeeded(cellIsExpanded: Bool) {
+    // MARK: Private Methods
+    
+    private func addExpandCollapseButtonIfNeeded(cellIsExpanded: Bool) {
         guard let previewTextLabelExpectedWidth else { return }
         
         if !previewTextLabel.fits(
@@ -120,8 +115,6 @@ final class PostCell: UITableViewCell {
         
         setupExpandCollapseButton(cellIsExpanded: cellIsExpanded)
     }
-    
-    // MARK: Private Methods
     
     private func setupExpandCollapseButton(cellIsExpanded: Bool) {
         let action = UIAction { [weak self] _ in
