@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				13677D6D2AA1463B0020E159 /* Constant */,
-				13677D6A2AA131F40020E159 /* Extention */,
+				13677D6A2AA131F40020E159 /* Extension */,
 				13677D702AA1DB680020E159 /* Module */,
 				13677D612AA1129E0020E159 /* Resource */,
 				13677D652AA11AE90020E159 /* Root */,
@@ -139,7 +139,7 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		13677D6A2AA131F40020E159 /* Extention */ = {
+		13677D6A2AA131F40020E159 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				13677D792AA1EA700020E159 /* Date + Extensions.swift */,
@@ -149,7 +149,7 @@
 				13CCAB382AA50F0000AFE566 /* UILabel + Extensions.swift */,
 				13D8F5232AA7ADE500119557 /* UITableView + Extensions.swift */,
 			);
-			path = Extention;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		13677D6D2AA1463B0020E159 /* Constant */ = {
