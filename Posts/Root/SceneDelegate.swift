@@ -9,7 +9,11 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    // MARK: Public Properties
+    
     var window: UIWindow?
+    
+    // MARK: Public Methods
     
     func scene(
         _ scene: UIScene,
@@ -18,14 +22,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        setupWindow(windowScene: windowScene)
+        setupRootViewController()
+    }
+    
+    // MARK: Private Methods
+    
+    private func setupWindow(windowScene: UIWindowScene) {
         window = UIWindow(windowScene: windowScene)
-        
-        let postsViewController = PostsViewController()
-        let navigationController = UINavigationController(
-            rootViewController: postsViewController)
+        window?.makeKeyAndVisible()
+    }
+    
+    private func setupRootViewController() {
+        let postsViewController = PostsModuleAssembly().assemble()
+        let navigationController = UINavigationController(rootViewController: postsViewController)
         
         window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
     }
     
 }

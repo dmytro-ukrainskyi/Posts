@@ -7,16 +7,17 @@
 
 import UIKit
 
-final class PostsViewController: UIViewController {
+final class PostsViewController: UIViewController, ScreenTransitionable {
+    
+    // MARK: Public Properties
+    
+    var presenter: PostsViewOutput?
     
     // MARK: Private Properties
     
-    private let postManager: PostManagerProtocol = PostManager()
-    
-    private var posts: [Post] = []
-    
     private let tableView = UITableView()
     
+    // TODO: Should presenter handle expanding cells?
     private var expandedCellsIndices: IndexSet = []
     
     // MARK: Lifecycle
@@ -25,44 +26,40 @@ final class PostsViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        loadPosts()
+        presenter?.loadPosts()
     }
     
-    // MARK: Private Methods
-    
-    private func loadPosts() {
-        Task {
-            do {
-                tableView.showActivityIndicator()
-                
-                posts = try await postManager.fetchPosts()
-                
-                tableView.reloadData()
-                tableView.clearBackgroundView()
-            } catch {
-                tableView.show(error: error as NSError)
-            }
-        }
-    }
-    
-    fileprivate func sortPostsBy(_ sortOrder: SortOrder) {
-        switch sortOrder {
-        case .datePosted:
-            posts.sort { $0.timestamp > $1.timestamp }
-        case .likes:
-            posts.sort { $0.likesCount > $1.likesCount }
-        }
-        
-        tableView.reloadData()
-    }
-    
+    // TODO: Should move handling user interactions completely to presenter?
     @objc
     func handleRefreshControl() {
-        loadPosts()
+        presenter?.didPullToRefresh()
         
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
         }
+    }
+    
+}
+
+// MARK: PostsViewProtocol
+
+extension PostsViewController: PostsViewInput {
+    
+    func showActivityIndicator() {
+        tableView.showActivityIndicator()
+
+    }
+    
+    func hideActivityIndicator() {
+        tableView.clearBackgroundView()
+    }
+    
+    func refreshTableView() {
+        tableView.reloadData()
+    }
+    
+    func show(error: Error) {
+        tableView.show(error: error as NSError)
     }
     
 }
@@ -122,11 +119,13 @@ extension PostsViewController {
         )
         
         let sortByDateAction = UIAction(title: "Date Posted") { _ in
-            self.sortPostsBy(.datePosted)
+            self.presenter?.didTapSortByDateMenuOption()
         }
         let sortByLikesAction = UIAction(title: "Likes") { _ in
-            self.sortPostsBy(.likes)
+            self.presenter?.didTapSortByLikesMenuOption()
         }
+        
+        // TODO: Who should be responsible for assigning menu to sort button?
         
         sortButton.menu = UIMenu(
             title: "Sort By",
@@ -146,7 +145,7 @@ extension PostsViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return posts.count
+        return presenter?.getPostsCount() ?? 0
     }
     
     func tableView(
@@ -159,8 +158,9 @@ extension PostsViewController: UITableViewDataSource {
         ) as? PostCell else {
             return UITableViewCell()
         }
+                
+        guard let post = presenter?.posts[indexPath.row] else { return UITableViewCell() }
         
-        let post = posts[indexPath.row]
         let cellIsExpanded = expandedCellsIndices.contains(indexPath.row)
         
         postCell.configure(
@@ -199,6 +199,7 @@ extension PostsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension PostsViewController: UITableViewDelegate {    
+    
     func tableView(
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
@@ -212,11 +213,7 @@ extension PostsViewController: UITableViewDelegate {
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let postDetailViewController = PostDetailViewController()
-        postDetailViewController.postID = posts[indexPath.row].id
-        
-        navigationController?
-            .pushViewController(postDetailViewController, animated: true)
+        presenter?.didSelectPostAt(index: indexPath.row)
     }
     
 }

@@ -22,6 +22,10 @@
 		13677D6F2AA146630020E159 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D6E2AA146630020E159 /* Constants.swift */; };
 		13677D7A2AA1EA700020E159 /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D792AA1EA700020E159 /* Date + Extensions.swift */; };
 		13677D7E2AA22C420020E159 /* SortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13677D7D2AA22C420020E159 /* SortOrder.swift */; };
+		13B421252AF45F4F00810A0E /* PostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B421242AF45F4F00810A0E /* PostsPresenter.swift */; };
+		13B421282AF4F2BB00810A0E /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B421272AF4F2BB00810A0E /* PostsRouter.swift */; };
+		13B4212C2AF4F61600810A0E /* PostsModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4212B2AF4F61600810A0E /* PostsModuleAssembly.swift */; };
+		13B421302AF50C1400810A0E /* ScreenTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4212F2AF50C1400810A0E /* ScreenTransitionable.swift */; };
 		13CCAAB72AA35F6D00AFE566 /* PostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAAB62AA35F6D00AFE566 /* PostsResponse.swift */; };
 		13CCAABB2AA3814100AFE566 /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */; };
 		13CCAABD2AA38E1900AFE566 /* PostDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */; };
@@ -48,6 +52,10 @@
 		13677D6E2AA146630020E159 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		13677D792AA1EA700020E159 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
 		13677D7D2AA22C420020E159 /* SortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrder.swift; sourceTree = "<group>"; };
+		13B421242AF45F4F00810A0E /* PostsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPresenter.swift; sourceTree = "<group>"; };
+		13B421272AF4F2BB00810A0E /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
+		13B4212B2AF4F61600810A0E /* PostsModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModuleAssembly.swift; sourceTree = "<group>"; };
+		13B4212F2AF50C1400810A0E /* ScreenTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTransitionable.swift; sourceTree = "<group>"; };
 		13CCAAB62AA35F6D00AFE566 /* PostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponse.swift; sourceTree = "<group>"; };
 		13CCAABA2AA3814100AFE566 /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
 		13CCAABC2AA38E1900AFE566 /* PostDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailResponse.swift; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 		1342E5AE2AA0EF5500AB342F /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				13B4212E2AF50BFB00810A0E /* Common */,
 				13677D6D2AA1463B0020E159 /* Constant */,
 				13677D6A2AA131F40020E159 /* Extension */,
 				13677D702AA1DB680020E159 /* Module */,
@@ -99,6 +108,7 @@
 		1342E5C42AA0F2F200AB342F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1342E5C52AA0F2FA00AB342F /* Controller */,
 				13677D682AA129A70020E159 /* PostCell.swift */,
 			);
 			path = View;
@@ -182,8 +192,10 @@
 		13677D722AA1DBB10020E159 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				1342E5C52AA0F2FA00AB342F /* Controller */,
+				13B421292AF4F5CF00810A0E /* Assembly */,
 				13CCAAB82AA3602600AFE566 /* Model */,
+				13B421222AF45F1600810A0E /* Presenter */,
+				13B421262AF4F2AE00810A0E /* Router */,
 				1342E5C42AA0F2F200AB342F /* View */,
 			);
 			path = Posts;
@@ -203,6 +215,38 @@
 				13677D662AA129880020E159 /* PostDetailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		13B421222AF45F1600810A0E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				13B421242AF45F4F00810A0E /* PostsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13B421262AF4F2AE00810A0E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				13B421272AF4F2BB00810A0E /* PostsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		13B421292AF4F5CF00810A0E /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				13B4212B2AF4F61600810A0E /* PostsModuleAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		13B4212E2AF50BFB00810A0E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				13B4212F2AF50C1400810A0E /* ScreenTransitionable.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		13CCAAB82AA3602600AFE566 /* Model */ = {
@@ -324,15 +368,19 @@
 				13677D7E2AA22C420020E159 /* SortOrder.swift in Sources */,
 				13677D5E2AA110DC0020E159 /* PostManager.swift in Sources */,
 				13CCAAB72AA35F6D00AFE566 /* PostsResponse.swift in Sources */,
+				13B421302AF50C1400810A0E /* ScreenTransitionable.swift in Sources */,
+				13B421252AF45F4F00810A0E /* PostsPresenter.swift in Sources */,
 				13677D5B2AA10D160020E159 /* PostDetailViewController.swift in Sources */,
 				13677D672AA129880020E159 /* PostDetailView.swift in Sources */,
 				1342E5B02AA0EF5500AB342F /* AppDelegate.swift in Sources */,
 				13CCAABD2AA38E1900AFE566 /* PostDetailResponse.swift in Sources */,
+				13B4212C2AF4F61600810A0E /* PostsModuleAssembly.swift in Sources */,
 				13677D692AA129A70020E159 /* PostCell.swift in Sources */,
 				13CCAABF2AA3C98E00AFE566 /* DateFormatter + Extensions.swift in Sources */,
 				13CCAB392AA50F0000AFE566 /* UILabel + Extensions.swift in Sources */,
 				13677D562AA0FD390020E159 /* Post.swift in Sources */,
 				1342E5B22AA0EF5500AB342F /* SceneDelegate.swift in Sources */,
+				13B421282AF4F2BB00810A0E /* PostsRouter.swift in Sources */,
 				13D8F5242AA7ADE500119557 /* UITableView + Extensions.swift in Sources */,
 				13677D582AA0FDA20020E159 /* PostDetail.swift in Sources */,
 			);
